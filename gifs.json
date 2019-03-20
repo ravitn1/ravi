@@ -1,0 +1,15 @@
+{
+     "messages": [ 
+        { "attachment": 
+            { "type": "image", "payload": 
+                { 
+                    "url": "http://personabots.com/kekelost2.gif",
+                    "url": "https://media2.giphy.com/media/3oGRFp0AqM0BY4axjO/giphy.gif",
+                    "url": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQyaOesxB7_a_6ibqVHb8QTqVRolcB7NXMAMsCDcSKUT8vzc8TyzQ",
+                    "url": "https://media.tenor.com/images/5b3efc9bc3943f48013788a997d032a0/tenor.gif"
+                }
+                 
+            } 
+        }
+    ] 
+}
