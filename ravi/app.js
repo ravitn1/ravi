@@ -1,71 +1,96 @@
-const express = require('express')
+'use strict'
+const express = require('express');
 const app = express();
+const PORT = process.env.port || 3000;
 const fs = require('fs');
-const port = 3000
-let i= 0;
-let sample = {};
+let i = 0;
 
-fs.readFile('./some.json', function(err, data) {
-    console.log(JSON.parse(data));
-    sample = JSON.parse(data);
-});
-// app.get('/', (req, res) => res.send('Hello World!'))
-app.get('/0/:id', function(req, res) {
-    value = req.params.id;
-    if(value==false){
-        i=i+1;
-    }else{
-        i=i;
+
+app.get('/', (req, res) => {
+   
+    if (Object.keys(req.query)[0] == 'quiz-verify') {
+        i = i + 1;
+        res.send('')
     }
-    res.send('first answer verified');
+    if (Object.keys(req.query)[0] == 'final') {
+        let value = i;
+
+        if (value == 0) {
+            i = 0;
+            res.send({
+                "messages": [
+                    { "text": `you have answered ${value}/3 questions` },
+                    {
+                        "attachment":
+                        {
+                            "type": "image", "payload":
+                            {
+                                "url": "http://personabots.com/kekelost2.gif"
+                            }
+                        }
+                    },
+                ]
+
+            })
+        }
+        if (value == 1) {
+            i = 0;
+            res.send({
+                "messages": [
+                    { "text": `you have answered ${value}/3 questions` },
+                    {
+                        "attachment":
+                        {
+                            "type": "image", "payload":
+                            {
+                                "url": "http://personabots.com/kekelost2.gif"
+                            }
+                        }
+                    },
+                ]
+            })
+        }
+        if (value == 2) {
+            i = 0;
+            res.send({
+                "messages": [
+                    { "text": `you have answered ${value}/3 questions` },
+                    {
+                        "attachment":
+                        {
+                            "type": "image", "payload":
+                            {
+                                "url": "http://personabots.com/kekelost2.gif"
+                            }
+                        }
+                    },
+                ]
+            })
+        }
+        if (value == 3) {
+            i = 0;
+            res.send({
+                "messages": [
+                    { "text": `you have answered ${value}/3 questions` },
+                    {
+                        "attachment":
+                        {
+                            "type": "image", "payload":
+                            {
+                                "url": "http://personabots.com/kekelost2.gif"
+                            }
+                        }
+                    },
+                ]
+            })
+        }
+
+    }
+
 })
 
-app.get('/1/:id', function(req, res) {
-    value = req.params.id;
-    if(value=='First In, First Out'){
-        i=i+1;
-    }else{
-        i=i;
-    }
-    res.send('second answer verified');
+
+
+app.listen(PORT, () => {
+    console.log(`server started at port ${PORT}`);
 })
-
-
-app.get('/2/:id', function(req, res) {
-    value = req.params.id;
-    if(value==false){
-        i=i+1;
-    }else{
-        i=i;
-    }
-    res.send('Third answer verified');
-})
-app.get('/3/:id', function(req, res) {
-    value = req.params.id;
-    let data;
-    if(value){
-        i=i+1;
-    }else{
-        i=i;
-    }
-    if(i==0 ){
-        let data = [sample.messages[0], sample.messages[1]]
-    res.send(data);
-
-    }
-    if(i==1){
-        let data = [sample.messages[2], sample.messages[3]]
-        res.send(data);
-    }
-    if(i==2) {
-        let data = [sample.messages[4], sample.messages[5]]
-        res.send(data);
-    }
-    if(i==3) {
-        let data = [sample.messages[6], sample.messages[7]]
-    res.send(data);        
-    }
-})
-
-
-app.listen(port, () => console.log(`Example app listening on port ${port}!`))
